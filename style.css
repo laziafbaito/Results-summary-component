@@ -1,0 +1,215 @@
+/*! CSS reset */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+img,
+picture,
+svg,
+video {
+	display: block;
+	max-width: 100%;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font: inherit;
+}
+
+/*! Custom properties */
+
+:root {
+	/* ! Typography */
+	--font-fami-prim: "Hanken Grotesk", sans-serif;
+	--font-styl-med: 500;
+	--font-styl-bold: 700;
+	--font-styl-extr: 800;
+
+	/* ! Colors */
+	/* # HSL */
+	--prim-colr-red-hsl: 0, 100%, 67%;
+	--prim-colr-yell-hsl: 39, 100%, 56%;
+	--prim-colr-teal-hsl: 166, 100%, 37%;
+	--prim-colr-blue-hsl: 234, 85%, 45%;
+
+	--neut-colr-whit-hsl: 0, 0%, 100%;
+	--neut-colr-blue-hsl: 221, 100%, 96%;
+	--neut-colr-lave-hsl: 241, 100%, 89%;
+	--neut-colr-dark-grey-hsl: 224, 30%, 27%;
+
+	/* # Colors */
+	--colr-prim-red: hsl(var(--prim-colr-red-hsl));
+	--colr-prim-yell: hsl(var(--prim-colr-yell-hsl));
+	--colr-prim-teal: hsl(var(--prim-colr-teal-hsl));
+	--colr-prim-blue: hsl(var(--prim-colr-blue-hsl));
+
+	--colr-neut-whit: hsl(var(--neut-colr-whit-hsl));
+	--colr-neut-blue: hsl(var(--neut-colr-blue-hsl));
+	--colr-neut-lave: hsl(var(--neut-colr-lave-hsl));
+	--colr-neut-dark-grey: hsl(var(--neut-colr-dark-grey-hsl));
+
+	/* ! Gradients */
+	--grad-prim: linear-gradient(hsl(252, 100%, 67%), hsl(241, 81%, 54%));
+	--grad-seco: linear-gradient(hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0));
+}
+
+body {
+	font-family: var(--font-fami-prim);
+	font-weight: var(--font-styl-med);
+	font-size: 18px;
+}
+
+@media (min-width: 700px) {
+	body {
+		min-height: 100vh;
+		display: grid;
+		place-items: center;
+	}
+}
+
+.grid-flow {
+	display: grid;
+	align-content: start;
+	gap: 1rem;
+}
+
+.grid-flow[data-spacing="large"] {
+	gap: 1.75rem;
+}
+
+.flex-group {
+	display: flex;
+	align-items: center;
+	gap: .75rem;
+}
+
+.section-title {
+	font-weight: var(--font-styl-bold);
+	font-size: 18px;
+}
+
+.button {
+	color: var(--colr-neut-whit);
+	line-height: 1;
+	background: var(--colr-neut-dark-grey);
+	padding: 1rem 2rem;
+	border: 0;
+	border-radius: 100vw;
+	cursor: pointer;
+}
+
+.button:hover,
+.button:focus-visible {
+	background: var(--grad-prim);
+}
+
+.results-summary {
+	max-width: 720px;
+	display: grid;
+	--border-radius: 2rem;
+	--padding: 2rem;
+	color: hsl(var(--neut-colr-whit-hsl), .75);
+}
+
+@media (min-width: 700px) {
+	.results-summary {
+		grid-template-columns: 1fr 1fr;
+		border-radius: var(--border-radius);
+		margin: 0 2rem;
+		box-shadow: 0.5rem 1rem 3rem hsl(var(--neut-colr-dark-grey-hsl), 0.2);
+	}
+}
+
+.results {
+	background: var(--grad-prim);
+	text-align: center;
+	border-radius: 0 0 var(--border-radius) var(--border-radius);
+	color: hsl(var(--neut-colr-whit-hsl), .75);
+	padding: var(--padding) calc(var(--padding) * 1.5) ;
+}
+
+@media (min-width: 700px) {
+	.results {
+		border-radius: var(--border-radius);
+	}
+}
+
+.result-score {
+	display: grid;
+	place-content: center;
+	width: 12rem;
+	margin-inline: auto;
+	background: var(--grad-seco);
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+}
+
+.result-score span {
+	display: block;
+	font-weight: var(--font-styl-extr);
+	font-size: 5rem;
+	color: var(--colr-neut-whit);
+	line-height: 1;
+}
+
+.result-rank {
+	color: var(--colr-neut-whit);
+	font-size: 1.5rem;
+	font-weight: var(--font-styl-extr);
+}
+
+.summary {
+	padding: var(--padding);
+	color: var(--colr-neut-dark-grey);
+}
+
+.summary-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	border-radius: .75rem;
+	background-color: hsl(var(--item-color), .05);
+}
+
+.summary-item svg {
+	stroke: hsl(var(--item-color));
+}
+
+.summary-item-title {
+	font-weight: var(--font-styl-bold);
+	color: hsl(var(--item-color));
+}
+
+.summary-item[data-item-type="accent-1"] {
+	--item-color: var(--prim-colr-red-hsl);
+}
+
+.summary-item[data-item-type="accent-2"] {
+	--item-color: var(--prim-colr-yell-hsl);
+}
+
+.summary-item[data-item-type="accent-3"] {
+	--item-color: var(--prim-colr-teal-hsl);
+}
+
+.summary-item[data-item-type="accent-4"] {
+	--item-color: var(--prim-colr-blue-hsl);
+}
+
+.summary-score {
+	color: hsl(var(--neut-colr-dark-grey-hsl), .3);
+	font-weight: var(--font-styl-bold);
+}
+
+.summary-score span {
+	color: var(--colr-neut-dark-grey);
+}
+
+.attribution {
+	margin: 3rem;
+	text-align: center;
+}
